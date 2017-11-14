@@ -259,5 +259,7 @@ paket-files/
 # Python Tools for Visual Studio (PTVS)
 __pycache__/
 *.pyc
+
+/build/
 /build/x86-Debug
 /CMakeSettings.json
