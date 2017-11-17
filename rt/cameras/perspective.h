@@ -10,12 +10,6 @@ namespace rt {
 class PerspectiveCamera : public Camera {
 public:
 
-	Point center;
-	Vector forward;
-	Vector up;
-	float verticalOpeningAngle;
-	float horizontalOpeningAngle;
-
     PerspectiveCamera(
         const Point& center,
         const Vector& forward,
@@ -27,11 +21,17 @@ public:
     virtual Ray getPrimaryRay(float x, float y) const;
 
 private:
-	const Point& _center;
-	const Vector& _forward;
-	const Vector& _up;
-	const float _verticalOpeningAngle;
-	const	float _horizonalOpeningAngle;
+	Point center;
+	Vector forward;
+	Vector up;
+	float verticalOpeningAngle;
+	float horizonalOpeningAngle;
+
+	Vector u;
+	Vector v;
+
+	float uMult;
+	float vMult;
 };
 
 }

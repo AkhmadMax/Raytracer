@@ -24,6 +24,14 @@ namespace rt {
 		this->cam = cam;
 	}
 
+	void Renderer::setSamples(uint samples)
+	{
+	}
+
+	void Renderer::render(Image & img)
+	{
+	}
+
 	void Renderer::test_render1(Image& img)
 	{
 		//SDL_Window *window;
