@@ -9,6 +9,8 @@
 //#include <SDL.h>
 #include <rt/ray.h>
 #include <rt/cameras/camera.h>
+#include <rt/integrators/casting.h>
+#include <main/statistics.h>
 
 
 rt::RGBColor a1computeColor(rt::uint x, rt::uint y, rt::uint width, rt::uint height);
@@ -22,6 +24,7 @@ namespace rt {
 	{
 		//convert image pixel coordinates into the uniform camera coordinates
 		this->cam = cam;
+		this->integrator = integrator;
 	}
 
 	void Renderer::setSamples(uint samples)
@@ -30,6 +33,25 @@ namespace rt {
 
 	void Renderer::render(Image & img)
 	{
+		for (int i = 0; i < img.height(); i++)
+		{
+			for (int j = 0; j < img.width(); j++)
+			{
+				// normalized coordinates
+				float fx = float(j) / float(img.width());
+				float fy = float(i) / float(img.height());
+
+				// camera space coordinates
+				fx = fx * 2 - 1;
+				fy = 1 - fy * 2;
+
+				Statistics::numPrimaryRays++;
+				const Ray ray = this->cam->getPrimaryRay(fx, fy);
+				RGBColor color = this->integrator->getRadiance(ray);
+
+				img(j, i) = color;
+			}
+		}
 	}
 
 	void Renderer::test_render1(Image& img)

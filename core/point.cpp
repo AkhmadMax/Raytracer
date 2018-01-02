@@ -1,6 +1,6 @@
 #include <core/point.h>
 #include <core/vector.h>
-
+#include <core/scalar.h>
 
 namespace rt {
 
@@ -31,5 +31,23 @@ namespace rt {
 		return result;
 	}
 
+	Point min(const Point & a, const Point & b)
+	{
+		Point result;
+		result.x = min(a.x, b.x);
+		result.y = min(a.y, b.y);
+		result.z = min(a.z, b.z);
+		return result;
+	}
+
+	Point max(const Point & a, const Point & b)
+	{
+		Point result;
+		result.x = max(a.x, b.x);
+		result.y = max(a.y, b.y);
+		result.z = max(a.z, b.z);
+		return result;
+	}
 }
+
 

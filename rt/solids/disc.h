@@ -8,13 +8,19 @@ namespace rt {
 
 class Disc : public Solid {
 public:
-    Disc() {}
+//    Disc() {}
     Disc(const Point& center, const Vector& normal, float radius, CoordMapper* texMapper, Material* material);
 
     virtual BBox getBounds() const;
     virtual Intersection intersect(const Ray& ray, float previousBestDistance=FLT_MAX) const;
     virtual Point sample() const;
     virtual float getArea() const;
+private:
+	const Point & center;
+	const Vector& normal;
+	float radius;
+	CoordMapper* texMapper;
+	Material* material;
 };
 
 }

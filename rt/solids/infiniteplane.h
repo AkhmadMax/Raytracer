@@ -2,6 +2,8 @@
 #define CG1RAYTRACER_SOLIDS_INFINITEPLANE_HEADER
 
 #include <rt/solids/solid.h>
+#include <core/point.h>
+#include <core/vector.h>
 
 namespace rt {
 
@@ -14,6 +16,12 @@ public:
     virtual Intersection intersect(const Ray& ray, float previousBestDistance=FLT_MAX) const;
 	virtual Point sample() const;
     virtual float getArea() const;
+
+private:
+	Point origin;
+	Vector normal;
+	CoordMapper* texMapper;
+	Material* material;
 };
 
 }

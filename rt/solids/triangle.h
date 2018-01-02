@@ -16,6 +16,11 @@ public:
     virtual Intersection intersect(const Ray& ray, float previousBestDistance=FLT_MAX) const;
 	virtual Point sample() const;
     virtual float getArea() const;
+
+private:
+	Point vertices[3];
+	CoordMapper* texMapper;
+	Material* material;
 };
 
 }
